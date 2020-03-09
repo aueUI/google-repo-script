@@ -126,8 +126,14 @@ if __name__ == '__main__':
 # repo default configuration
 #
 REPO_URL = os.environ.get('REPO_URL', None)
+USER_LANG = os.environ.get('LANG', None)
+
 if not REPO_URL:
-  REPO_URL = 'https://gerrit.googlesource.com/git-repo'
+  if "zh_CN" in USER_LANG:
+      REPO_URL = 'https://mirrors.tuna.tsinghua.edu.cn/git/git-repo'
+  else:
+      REPO_URL = 'https://gerrit.googlesource.com/git-repo'
+
 REPO_REV = os.environ.get('REPO_REV')
 if not REPO_REV:
   REPO_REV = 'stable'
